@@ -25,6 +25,8 @@ class DDMarkdownBlockProcessor(BlockProcessor):
         msgtype = m.group('msgType')
         dd_path = m.group('path')
 
+        print(os.getcwd())
+
         root = etree.parse(dd_path).getroot()
         message = root.find('messages/message[@msgtype=\'' + msgtype + '\']')
 
