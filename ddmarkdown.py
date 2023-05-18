@@ -79,7 +79,7 @@ class DDMarkdownBlockProcessor(BlockProcessor):
 
     def createComponentRow(self, parent, rowClass, componentName, required):
         tr = self.createRow(parent, rowClass, "td", componentName, required)
-        tr.getchildren()[0].set("colspan", "3")
+        list(tr)[0].set("colspan", "3")
         return tr
 
     def createFullWidthRow(self, parent, rowClass, text, tagType="td"):
