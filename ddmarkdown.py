@@ -3,6 +3,7 @@ from markdown.blockprocessors import BlockProcessor
 import xml.etree.ElementTree as etree
 import logging
 import re
+import os
 
 logger = logging.getLogger('MARKDOWN')
 
