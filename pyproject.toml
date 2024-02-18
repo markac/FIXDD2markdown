@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "markdown-ddmarkdown"
+version = "1.0.4"
+description = "Markdown plugin for pulling message and component definitions into mkdoc md files."
+authors = ["Mark Crowther <mark.crowther@weareadaptive.com>"]
+maintainers = ["Brett Delle Grazie <brett.dellegrazie@weareadaptive.com>"]
+license = "MIT"
+readme = "README.md"
+keywords = ["markdown", "plugin", "fix"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Plugins",
+    "Framework :: MkDocs",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Text Processing :: Filters",
+    "Topic :: Text Processing :: Markup :: Markdown",
+]
+packages = [
+    { include = "markdown_ddmarkdown", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+markdown = ">=3,<4"
+
+[tool.poetry.group.dev_dependencies.dependencies]
+markdown = { version = ">=3,<4", extras = ["testing"] }
+
+[tool.poetry.plugins."markdown.extensions"]
+"ddmarkdown" = "markdown_ddmarkdown.ddmarkdown:DDMarkdownExtension"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
