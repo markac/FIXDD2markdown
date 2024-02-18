@@ -115,7 +115,7 @@ class DDMarkdownExtension(Extension):
         """ Add DDMarkdownBlockProcessor to Markdown instance. """
         blockprocessor = DDMarkdownBlockProcessor(md.parser)
         blockprocessor.config = self.getConfigs()
-        md.parser.blockprocessors.add('dd', blockprocessor, '>code')
+        md.parser.blockprocessors.register(blockprocessor, 'dd', 85)
 
 
 def makeExtension(**kwargs):   # pragma: no cover

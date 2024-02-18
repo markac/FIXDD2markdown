@@ -1,4 +1,19 @@
-import markdown
-from ddmarkdown import DDMarkdownExtension
+from markdown.test_tools import TestCase
+from markdown_ddmarkdown import ddmarkdown
 
-markdown.markdown('::fix AE', extensions=[DDMarkdownExtension()])
+class TestDDMarkdown(TestCase):
+    default_kwargs = {'extensions': ['ddmarkdown']}
+
+    def test_fix_render(self):
+        self.assertMarkdownRenders(
+            self.dedent(
+                """
+                ::fix AE tests/data/AE.txt
+                """
+            ),
+            self.dedent(
+                """
+                *FIX*: `AE`
+                """
+            )
+        )
