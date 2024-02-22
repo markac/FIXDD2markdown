@@ -1,0 +1,27 @@
+name: CI
+on: pull_request
+
+jobs:
+  ci:
+    strategy:
+      fail-fast: false
+      matrix:
+        #python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.10"]
+        poetry-version: ["1.7.1"]
+        os: [ubuntu-22.04]
+    name: Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install poetry
+        run: pipx install poetry
+      - uses: actions/setup-python@v5
+        id: cp310
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'poetry'
+      - run: echo '${{ steps.cp310.outputs.python-version }}'
+      - run: echo 'Cache Hit ${{ steps.cp310.outputs.cache-hit }}'
+      - run: poetry install
+      - run: poetry run python3 -m unittest discover
